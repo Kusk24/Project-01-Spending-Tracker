@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {LineChart, Line, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, Legend} from 'recharts';
 import './App.css';
 
-const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff7f50', '#8dd1e1', '#a4de6c', '#d0ed57', '#ffc0cb'];
+const COLORS = ['#26668B', '#478CC9', '#63C7C5', '#FFE6A7','#F9844A','#F7F7F7'];
 
 function filterSpendings(spendings, timeFilter) {
     const now = new Date();
