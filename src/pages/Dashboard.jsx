@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {LineChart, Line, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, Legend} from 'recharts';
-import './App.css';
+import '../App.css';
 
 const COLORS = ['#26668B', '#478CC9', '#63C7C5', '#FFE6A7','#F9844A','#F7F7F7'];
 
