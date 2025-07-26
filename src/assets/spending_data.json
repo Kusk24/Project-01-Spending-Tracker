@@ -1,53 +1,72 @@
 [
-    {
-        "spending_id": 1,
-        "category": "Groceries",
-        "description": "Weekly grocery shopping"
-    },
-    {
-        "spending_id": 2,
-        "category": "Utilities",
-        "description": "Electricity bill for September"
-    },
-    {
-        "spending_id": 3,
-        "category": "Transportation",
-        "description": "Gas refill"
-    },
-    {
-        "spending_id": 4,
-        "category": "Entertainment",
-        "description": "Movie night and snacks"
-    },
-    {
-        "spending_id": 5,
-        "category": "Dining Out",
-        "description": "Lunch with friends"
-    }
-    },
-    {
-        "spending_id": 6,
-        "category": "Health",
-        "description": "Gym membership fee"
-    },
-    {
-        "spending_id": 7,
-        "category": "Shopping",
-        "description": "Clothing purchase"
-    },
-    {
-        "spending_id": 8,
-        "category": "Travel",
-        "description": "Weekend getaway expenses"
-    },
-    {
-        "spending_id": 9,
-        "category": "Education",
-        "description": "Online course subscription"
-    },
-    {
-        "spending_id": 10,
-        "category": "Miscellaneous",
-        "description": "Gift for a friend"
-    }   
+  {
+    "spending_id": 1,
+    "category": "Groceries",
+    "description": "Weekly grocery shopping",
+    "amount": 120.50,
+    "date": "2025-07-01"
+  },
+  {
+    "spending_id": 2,
+    "category": "Utilities",
+    "description": "Electricity bill for September",
+    "amount": 85.00,
+    "date": "2025-07-03"
+  },
+  {
+    "spending_id": 3,
+    "category": "Transportation",
+    "description": "Gas refill",
+    "amount": 45.25,
+    "date": "2025-07-04"
+  },
+  {
+    "spending_id": 4,
+    "category": "Entertainment",
+    "description": "Movie night and snacks",
+    "amount": 32.00,
+    "date": "2025-07-06"
+  },
+  {
+    "spending_id": 5,
+    "category": "Dining Out",
+    "description": "Lunch with friends",
+    "amount": 28.75,
+    "date": "2025-07-07"
+  },
+  {
+    "spending_id": 6,
+    "category": "Health",
+    "description": "Gym membership fee",
+    "amount": 55.00,
+    "date": "2025-07-08"
+  },
+  {
+    "spending_id": 7,
+    "category": "Shopping",
+    "description": "Clothing purchase",
+    "amount": 90.99,
+    "date": "2025-07-10"
+  },
+  {
+    "spending_id": 8,
+    "category": "Travel",
+    "description": "Weekend getaway expenses",
+    "amount": 250.00,
+    "date": "2025-07-12"
+  },
+  {
+    "spending_id": 9,
+    "category": "Education",
+    "description": "Online course subscription",
+    "amount": 39.99,
+    "date": "2025-07-14"
+  },
+  {
+    "spending_id": 10,
+    "category": "Miscellaneous",
+    "description": "Gift for a friend",
+    "amount": 20.00,
+    "date": "2025-07-15"
+  }
 ]
