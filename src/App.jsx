@@ -1,10 +1,10 @@
-import AnalyticsDashboard from "./pages/Dashboard";
+import { Dashboard }  from "./pages/Dashboard";
 import Journal from "./pages/Journal"
 import NotFoundPage from "./pages/NotFoundPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 const router = createBrowserRouter([
-    { path: "/", element: <AnalyticsDashboard /> },
+    { path: "/", element: <Dashboard /> },
     { path: "/journal", element: <Journal /> },
     { path: "*", element: <NotFoundPage /> }
 ]);
