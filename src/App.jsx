@@ -4,9 +4,9 @@ import NotFoundPage from "./pages/NotFoundPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
 const router = createBrowserRouter([
-    { path: "/", element: <Dashboard /> },
-    { path: "/journal", element: <Journal /> },
-    { path: "*", element: <NotFoundPage /> },
+    { path: "/Project-01-Spending-Tracker/", element: <Dashboard /> },
+    { path: "/Project-01-Spending-Tracker/journal", element: <Journal /> },
+    { path: "/Project-01-Spending-Tracker/*", element: <NotFoundPage /> },
 ]);
 
 function App() {

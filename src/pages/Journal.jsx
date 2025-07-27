@@ -47,7 +47,7 @@ function Journal() {
         <div className="dashboard-container">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
                 <h1 className="dashboard-title" style={{ margin: 0 }}>Journal 📒</h1>
-                <NavLink to='/'>
+                <NavLink to='/Project-01-Spending-Tracker/'>
                     <button className="submit-button">Go to Dashboard</button>
                 </NavLink>
             </div>
