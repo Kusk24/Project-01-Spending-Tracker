@@ -16,7 +16,8 @@ export const Dashboard = () => {
 
   const inputRef = useRef("");
   const selectRef = useRef("Daily");
-  const [selectedPeriod, setSelectedPeriod] = useState('Monthly');
+  const initialPeriod = localStorage.getItem('period') || 'Monthly';
+  const [selectedPeriod, setSelectedPeriod] = useState(initialPeriod);
 
   // Removed showPeriodStart and showPeriodEnd
 
@@ -27,6 +28,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const stored = localStorage.getItem('categoryData');
     const spendingStored = localStorage.getItem('spendingData');
+    const storedPeriod = localStorage.getItem('period');
 
     if (!stored) {
       localStorage.setItem('categoryData', JSON.stringify(categoryDataJSON));
@@ -43,7 +45,12 @@ export const Dashboard = () => {
     } else {
       setSpendingData(JSON.parse(spendingStored))
     }
+
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('period', selectedPeriod)
+  }, [selectedPeriod])
 
   useEffect(() => {
     if (categoryData.length > 0) {
