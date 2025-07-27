@@ -155,7 +155,7 @@ export const Dashboard = () => {
     <div className="dashboard-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
         <h1 className="dashboard-title" style={{ margin: 0 }}>Dashboard 💸</h1>
-        <NavLink to="/Project-01-Spending-Tracker/journal">
+        <NavLink to="/journal">
           <button className="submit-button">Go to Journal</button>
         </NavLink>
       </div>

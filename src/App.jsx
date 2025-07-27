@@ -1,18 +1,23 @@
-import { Dashboard }  from "./pages/Dashboard";
+import { Dashboard } from "./pages/Dashboard";
 import Journal from "./pages/Journal"
 import NotFoundPage from "./pages/NotFoundPage";
-import { createHashRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, HashRouter, RouterProvider, Routes, Route } from "react-router-dom"
 
-const router = createHashRouter([
-    { path: "/Project-01-Spending-Tracker/", element: <Dashboard /> },
-    { path: "/Project-01-Spending-Tracker/journal", element: <Journal /> },
-    { path: "/Project-01-Spending-Tracker/*", element: <NotFoundPage /> },
-]);
+// const router = createBrowserRouter([
+//     { path: "/Project-01-Spending-Tracker/", element: <Dashboard /> },
+//     { path: "/Project-01-Spending-Tracker/journal", element: <Journal /> },
+//     { path: "/Project-01-Spending-Tracker/*", element: <NotFoundPage /> },
+// ]);
 
 function App() {
     return (
         <>
-            <RouterProvider router={router} />
+            <HashRouter>
+            <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/journal" element={<Journal />} />
+            </Routes>
+            </HashRouter>
         </>
     )
 }
