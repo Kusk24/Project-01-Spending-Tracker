@@ -1,4 +1,6 @@
 # Logs
+dist/
+build/
 .idea/
 logs
 *.log
