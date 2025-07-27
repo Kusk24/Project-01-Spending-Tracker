@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { 
-  NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import categoryDataJSON from '../assets/category_data.json';
 import spendingDataJSON from '../assets/spending_data.json'
 import { SelectedPeriodChart } from '../components/SelectedChart';
@@ -21,9 +20,9 @@ export const Dashboard = () => {
 
   // Removed showPeriodStart and showPeriodEnd
 
-  const handlePeriodChange = (e) => {
-    setSelectedPeriod(e.target.value);
-  };
+  // const handlePeriodChange = (e) => {
+  //   setSelectedPeriod(e.target.value);
+  // };
 
   useEffect(() => {
     const stored = localStorage.getItem('categoryData');
@@ -169,79 +168,99 @@ export const Dashboard = () => {
   const groupedCategory = groupByCategory(spendingData);
 
   return (
-    <>
-
-      <div>
-        <span>
-          <h1>Dashboard</h1>
-          <NavLink to={"/journal"}>
-            <button>Journal</button>
-          </NavLink>
-        </span>
+    <div className="dashboard-container">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+        <h1 className="dashboard-title" style={{ margin: 0 }}>Dashboard 💸</h1>
+        <NavLink to="/journal">
+          <button className="submit-button">Go to Journal</button>
+        </NavLink>
+      </div>
+      <form className="spending-form spending-form-stack" onSubmit={e => e.preventDefault()}>
+        <div className="category-row">
+          <label htmlFor="category-select" className="filter-label">Current Categories:</label>
+          <select id="category-select" className="input category-select">
+            {categoryData.map((cat, idx) => (
+              <option key={idx} value={cat.category}>{cat.category}</option>
+            ))}
+          </select>
+          <button type="button" className="submit-button clear" onClick={() => { localStorage.clear(); window.location.reload(); }}>Clear Local Storage</button>
+        </div>
+        <div className="category-row">
+          <label htmlFor="new-category" className="filter-label">Add New Category:</label>
+          <input id="new-category" type="text" ref={inputRef} className="input" placeholder="New Category" />
+          <button type="button" className="submit-button" onClick={() => {
+            const val = inputRef.current.value.trim();
+            if (val && !categoryData.some(cat => cat.category === val)) {
+              setcategoryData((prev) => [...prev, { category: val }]);
+              inputRef.current.value = '';
+            }
+          }}>Add Category</button>
+        </div>
+      </form>
+      {/* <div className="category-list">
         <h3>Spending Category</h3>
         <ul>
           {categoryData.map((cat, idx) => (
-            <li key={idx}> {cat.category} </li>
+            <li key={idx}>{cat.category}</li>
           ))}
         </ul>
-        <input type="text" ref={inputRef} />
-        <button onClick={() => {
-          setcategoryData((prev) => [...prev, { category: inputRef.current.value }])
-        }}>
-          Save
-        </button>
+      </div> */}
+      <div className="totals-grid">
+        <div className="total-card">
+          <h2>Total Spending (All Time)</h2>
+          <p className="total-value">${totalAmount}</p>
+        </div>
+        <div className="total-card">
+          <h2>Total ({selectedPeriodValue || availablePeriods[0]})</h2>
+          <p className="total-value">${selectedTotal}</p>
+        </div>
       </div>
-
-      <span>
-        <button onClick={() => { localStorage.clear() }}>
-          Clear Local Storage
-        </button>
-      </span>
-
-      <p><strong>Total Spending (All Time):</strong> {totalAmount}</p>
-
-      <div style={{ display: 'flex', gap: '2em', flexWrap: 'wrap' }}>
-        <TotalChart groupByCategory={groupedCategory} />
-
-
-        <div style={{ margin: '1em 0' }}>
-        <label htmlFor="period-select"><strong>Show by:</strong></label>
-        <select
-          id="period-select"
-          ref={selectRef}
-          value={selectedPeriod}
-          onChange={e => {
-            setSelectedPeriod(e.target.value);
-            setSelectedPeriodValue('');
-          }}
-        >
-          <option value='Daily'>Daily</option>
-          <option value='Weekly'>Weekly</option>
-          <option value='Monthly'>Monthly</option>
-        </select>
+      <div className="filter-section">
+        <div>
+          <label className="filter-label">Show by:</label>
+          <select
+            id="period-select"
+            ref={selectRef}
+            value={selectedPeriod}
+            onChange={e => {
+              setSelectedPeriod(e.target.value);
+              setSelectedPeriodValue('');
+            }}
+            className="dropdown"
+          >
+            <option value='Daily'>Daily</option>
+            <option value='Weekly'>Weekly</option>
+            <option value='Monthly'>Monthly</option>
+          </select>
+        </div>
+        <div>
+          <label className="filter-label">Select {selectedPeriod} period:</label>
+          <select
+            id="timeframe-select"
+            value={selectedPeriodValue}
+            onChange={e => setSelectedPeriodValue(e.target.value)}
+            className="dropdown"
+          >
+            {availablePeriods.map((period, idx) => (
+              <option key={idx} value={period}>{period}</option>
+            ))}
+          </select>
+        </div>
       </div>
-
-      <div style={{ margin: '1em 0' }}>
-        <label htmlFor="timeframe-select"><strong>Select {selectedPeriod} period:</strong></label>
-        <select
-          id="timeframe-select"
-          value={selectedPeriodValue}
-          onChange={e => setSelectedPeriodValue(e.target.value)}
-        >
-          {availablePeriods.map((period, idx) => (
-            <option key={idx} value={period}>{period}</option>
-          ))}
-        </select>
+      <div className="charts-grid">
+        <div className="chart-card">
+          <h3>Spending Over Time</h3>
+          <TotalChart groupByCategory={groupedCategory} />
+        </div>
+        <div className="chart-card">
+          <h3>Spending by Category</h3>
+          <SelectedPeriodChart
+            groupedSpending={groupedSpending}
+            selectedPeriodValue={selectedPeriodValue}
+            availablePeriods={availablePeriods}
+          />
+        </div>
       </div>
-
-      <p><strong>Total Spending ({selectedPeriodValue || availablePeriods[0]}):</strong> {selectedTotal}</p>
-        <SelectedPeriodChart
-          groupedSpending={groupedSpending}
-          selectedPeriodValue={selectedPeriodValue}
-          availablePeriods={availablePeriods}
-        />
-      </div>
-
-    </>
+    </div>
   );
 };
