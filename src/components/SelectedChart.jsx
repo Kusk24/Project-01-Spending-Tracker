@@ -104,7 +104,10 @@ export const SelectedPeriodChart = ({ spendingData, selectedPeriod, selectedMont
                 ? `Weekly Line Chart of ${selectedMonth}`
                 : `Daily Line Chart of ${selectedMonth}`,
         }]}
-        series={series}
+        series={series.map(serie => ({
+          ...serie,
+          showMark: false  // This hides all markers/dots
+        }))} 
         height={300}
         margin={{
           left: 70,
@@ -125,9 +128,9 @@ export const SelectedPeriodChart = ({ spendingData, selectedPeriod, selectedMont
         height={300}
         className="custom-pie-chart"
       />
-      <p1 style={{ textAlign: 'center' }}>
+      <p style={{ textAlign: 'center' }}>
         {`Pie Chart of ${selectedMonth}`}
-      </p1>
+      </p>
     </div>
   );
 };
