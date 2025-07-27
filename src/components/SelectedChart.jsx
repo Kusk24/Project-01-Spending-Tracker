@@ -107,13 +107,13 @@ export const SelectedPeriodChart = ({ spendingData, selectedPeriod, selectedMont
         series={series.map(serie => ({
           ...serie,
           showMark: false  // This hides all markers/dots
-        }))} 
+        }))}
         height={300}
         margin={{
           left: 70,
           right: 40,
           top: 40,
-          bottom: selectedPeriod === 'Monthly' ? 100 : 60
+          bottom: 60
         }}
         className="custom-line-chart"
       />
