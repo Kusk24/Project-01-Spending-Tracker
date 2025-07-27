@@ -2,8 +2,8 @@ import { LineChart, PieChart } from "@mui/x-charts";
 import React from "react";
 
 export const TotalChart = ({ groupByCategory }) => {
-  // Pie chart: total per category (all time)
-  const pieChartData = Object.keys(groupByCategory).map(category => {
+
+    const pieChartData = Object.keys(groupByCategory).map(category => {
     const total = groupByCategory[category].reduce((sum, item) => sum + parseFloat(item.amount), 0);
     return {
       id: category,
@@ -11,7 +11,7 @@ export const TotalChart = ({ groupByCategory }) => {
       label: category
     };
   });
-  // Line chart: all time, by date
+  
   const allItems = Object.values(groupByCategory).flat();
   const sortedItems = allItems.sort((a, b) => new Date(a.date) - new Date(b.date));
   const xAxisDates = sortedItems.map(item => item.date);
@@ -24,16 +24,29 @@ export const TotalChart = ({ groupByCategory }) => {
     return {
       data: amounts,
       label: category,
-    //   area: true,
     };
   });
+  
   return (
     <div className="chart-content">
       <h4 className="chart-heading">All Time Pie Chart & Line Chart</h4>
       <LineChart
-        xAxis={[{ data: xAxisDates, scaleType: 'point', label: 'Date' }]}
+        xAxis={[{ 
+          data: xAxisDates, 
+          scaleType: 'point', 
+          label: 'All Time',
+          tickLabelStyle: {
+            fontSize: 0, 
+          }
+        }]}
         series={series}
         height={300}
+        margin={{ 
+          left: 70, 
+          right: 40, 
+          top: 40, 
+          bottom: 60 
+        }}
         className="custom-line-chart"
       />
       <PieChart
@@ -46,6 +59,9 @@ export const TotalChart = ({ groupByCategory }) => {
         height={300}
         className="custom-pie-chart"
       />
+    <p1 style={{ textAlign: 'center' }}>
+        {`Pie Chart of All Time`}
+      </p1>
     </div>
   );
 };

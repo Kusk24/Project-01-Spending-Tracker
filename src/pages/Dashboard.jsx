@@ -57,64 +57,41 @@ export const Dashboard = () => {
   }, [spendingData])
 
   useEffect(() => {
-    // Get grouped spending for the selected period type
-    const groupedSpending = getGroupedSpending();
-    let periods = [];
-    // Add current period options
+    // Only allow months in the dropdown
+    const monthsSet = new Set();
+    spendingData.forEach(item => {
+      const date = new Date(item.date);
+      const monthStr = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`;
+      monthsSet.add(monthStr);
+    });
+    // Always include current month
     const today = new Date();
-    if (selectedPeriod === 'Daily') {
-      periods.push(today.toISOString().slice(0, 10));
-    } else if (selectedPeriod === 'Weekly') {
-      const year = today.getFullYear();
-      const week = Math.ceil(((today - new Date(year, 0, 1)) / 86400000 + new Date(year, 0, 1).getDay() + 1) / 7);
-      periods.push(`Week ${week} ${year}`);
-    } else if (selectedPeriod === 'Monthly') {
-      periods.push(`${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`);
-    }
-    // Add all available periods from data
-    Object.keys(groupedSpending).forEach(category => {
-      Object.keys(groupedSpending[category]).forEach(periodKey => {
-        if (!periods.includes(periodKey)) periods.push(periodKey);
-      });
+    const currentMonth = `${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
+    monthsSet.add(currentMonth);
+    const sortedMonths = Array.from(monthsSet).sort((a, b) => {
+      const [monthA, yearA] = a.split(' ');
+      const [monthB, yearB] = b.split(' ');
+      const dateA = new Date(`${monthA} 1, ${yearA}`);
+      const dateB = new Date(`${monthB} 1, ${yearB}`);
+      return dateA - dateB;
     });
-    // Sort periods from latest to oldest
-    const sortedPeriods = periods.slice().sort((a, b) => {
-      // Daily: YYYY-MM-DD
-      if (selectedPeriod === 'Daily') {
-        return new Date(b) - new Date(a);
-      }
-      // Weekly: 'Week N YYYY'
-      if (selectedPeriod === 'Weekly') {
-        const [_, weekA, yearA] = a.match(/Week (\d+) (\d{4})/) || [];
-        const [__, weekB, yearB] = b.match(/Week (\d+) (\d{4})/) || [];
-        if (yearA !== yearB) return yearB - yearA;
-        return weekB - weekA;
-      }
-      // Monthly: 'Month YYYY'
-      if (selectedPeriod === 'Monthly') {
-        const [monthA, yearA] = a.split(' ');
-        const [monthB, yearB] = b.split(' ');
-        const dateA = new Date(`${monthA} 1, ${yearA}`);
-        const dateB = new Date(`${monthB} 1, ${yearB}`);
-        return dateB - dateA;
-      }
-      return 0;
-    });
-    setAvailablePeriods(sortedPeriods);
+    setAvailablePeriods(sortedMonths);
 
-    // Calculate selected total for selected period value
-    let periodToUse = selectedPeriodValue;
-    if (!periodToUse && periods.length > 0) {
-      periodToUse = periods[0];
+    // Calculate selected total for selected month
+    let monthToUse = selectedPeriodValue;
+    if (!monthToUse && sortedMonths.length > 0) {
+      monthToUse = sortedMonths[0];
     }
     let total = 0;
-    Object.keys(groupedSpending).forEach(category => {
-      if (groupedSpending[category][periodToUse]) {
-        total += groupedSpending[category][periodToUse].reduce((sum, item) => sum + parseFloat(item.amount), 0);
+    spendingData.forEach(item => {
+      const date = new Date(item.date);
+      const monthStr = `${date.toLocaleString('default', { month: 'long' })} ${date.getFullYear()}`;
+      if (monthStr === monthToUse) {
+        total += parseFloat(item.amount);
       }
     });
     setSelectedTotal(total);
-  }, [selectedPeriod, spendingData, selectedPeriodValue]);
+  }, [spendingData, selectedPeriodValue]);
 
 
   const groupByCategory = (spendingData) => {
@@ -208,11 +185,11 @@ export const Dashboard = () => {
       <div className="totals-grid">
         <div className="total-card">
           <h2>Total Spending (All Time)</h2>
-          <p className="total-value">${totalAmount}</p>
+          <p className="total-value">{totalAmount} Bahts</p>
         </div>
         <div className="total-card">
           <h2>Total ({selectedPeriodValue || availablePeriods[0]})</h2>
-          <p className="total-value">${selectedTotal}</p>
+          <p className="total-value">{selectedTotal} Bahts</p>
         </div>
       </div>
       <div className="filter-section">
@@ -224,7 +201,7 @@ export const Dashboard = () => {
             value={selectedPeriod}
             onChange={e => {
               setSelectedPeriod(e.target.value);
-              setSelectedPeriodValue('');
+              // Do NOT reset selectedPeriodValue (selected month)
             }}
             className="dropdown"
           >
@@ -234,7 +211,7 @@ export const Dashboard = () => {
           </select>
         </div>
         <div>
-          <label className="filter-label">Select {selectedPeriod} period:</label>
+          <label className="filter-label">Select Month:</label>
           <select
             id="timeframe-select"
             value={selectedPeriodValue}
@@ -255,9 +232,10 @@ export const Dashboard = () => {
         <div className="chart-card">
           <h3>Spending by Category</h3>
           <SelectedPeriodChart
-            groupedSpending={groupedSpending}
-            selectedPeriodValue={selectedPeriodValue}
-            availablePeriods={availablePeriods}
+            spendingData={spendingData}
+            selectedPeriod={selectedPeriod}
+            selectedMonth={selectedPeriodValue || (availablePeriods.length > 0 ? availablePeriods[0] : "")}
+            availableMonths={availablePeriods}
           />
         </div>
       </div>

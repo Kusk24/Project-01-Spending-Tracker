@@ -49,7 +49,7 @@ export default function DataTable(props) {
               </TableCell>
               <TableCell align="right" className="data-table-category">{data.category}</TableCell>
               <TableCell align="right" className="data-table-description">{data.description}</TableCell>
-              <TableCell align="right" className="data-table-amount">${data.amount}</TableCell>
+              <TableCell align="right" className="data-table-amount">{data.amount} Bahts</TableCell>
               <TableCell align="right" className="data-table-date">{data.date}</TableCell>
               <TableCell align="right">
                 <button
