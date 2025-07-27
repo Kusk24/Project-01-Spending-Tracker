@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import DataTable from '../components/DataTable';
 
 function Journal() {
     const [spendingData, setSpendingData] = useState([]);
@@ -27,23 +28,26 @@ function Journal() {
     const dateRef = useRef();
     const categoryRef = useRef();
     const amountRef = useRef();
+    const desRef = useRef();
 
-    const addRecord = (date, category, amount) => {
+    const addRecord = (date, category, amount, description) => {
         setSpendingData((prev) =>
             [...prev,
             {
-                date: date.current.value,
+                spending_id: spendingData.length,
                 category: category.current.value,
-                amount: amount.current.value
+                description: description.current.value,
+                amount: amount.current.value,
+                date: date.current.value,
             }])
     }
 
     return (
         <>
         <h1>Journal</h1>
-            <Link to='/'>
+            <NavLink to='/'>
                 <button>Go to Dashboard</button>
-            </Link>
+            </NavLink>
             <div>
                 <input type="date" ref={dateRef} />
 
@@ -55,24 +59,14 @@ function Journal() {
                 </select>
 
                 <input type="number" ref={amountRef} />
+                
+                <input type="text" ref={desRef} />
 
-                <button onClick={() => addRecord(dateRef, categoryRef, amountRef)} >Add Record</button>
+                <button onClick={() => addRecord(dateRef, categoryRef, amountRef, desRef)} >Add Record</button>
             </div>
             <DataTable table={spendingData} />
         </>
     )
-}
-
-function DataTable(props) {
-    return (
-        <div>
-            <ol>
-                {props.table.map((data, idx) => (
-                    <li key={idx}>{data.category}, {data.amount}, {data.date}</li>
-                ))}
-            </ol>
-        </div>
-    );
 }
 
 export default Journal;
