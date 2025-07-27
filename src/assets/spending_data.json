@@ -1,0 +1,47 @@
+[
+  { "spending_id": 1,  "category": "Travel",        "description": "Train ticket",               "amount": 550.00,  "date": "2025-02-05" },
+  { "spending_id": 2,  "category": "Groceries",     "description": "Weekly groceries",          "amount": 854.00,  "date": "2025-02-10" },
+  { "spending_id": 3,  "category": "Dining Out",    "description": "Lunch with friend",         "amount": 257.50,  "date": "2025-02-15" },
+  { "spending_id": 4,  "category": "Transportation","description": "Bus ride",                  "amount": 150.00,  "date": "2025-02-20" },
+  { "spending_id": 5,  "category": "Utilities",     "description": "Water bill",                "amount": 453.00,  "date": "2025-02-25" },
+  { "spending_id": 6,  "category": "Health",        "description": "Medicine purchase",         "amount": 189.00,  "date": "2025-02-28" },
+
+  { "spending_id": 7,  "category": "Education",     "description": "Online course",             "amount": 1200.00, "date": "2025-03-02" },
+  { "spending_id": 8,  "category": "Miscellaneous", "description": "Random gift",               "amount": 300.00,  "date": "2025-03-06" },
+  { "spending_id": 9,  "category": "Shopping",      "description": "New shoes",                 "amount": 750.00,  "date": "2025-03-10" },
+  { "spending_id": 10, "category": "Entertainment", "description": "Cinema tickets",            "amount": 200.00,  "date": "2025-03-14" },
+  { "spending_id": 11, "category": "Travel",        "description": "Taxi fare",                 "amount": 285.00,  "date": "2025-03-18" },
+  { "spending_id": 12, "category": "Groceries",     "description": "Monthly market haul",       "amount": 952.00,  "date": "2025-03-22" },
+  { "spending_id": 13, "category": "Dining Out",    "description": "Dinner out",                "amount": 400.00,  "date": "2025-03-26" },
+
+  { "spending_id": 14, "category": "Transportation","description": "Train pass",                "amount": 600.00,  "date": "2025-04-03" },
+  { "spending_id": 15, "category": "Utilities",     "description": "Electricity bill",          "amount": 700.00,  "date": "2025-04-07" },
+  { "spending_id": 16, "category": "Health",        "description": "Doctor appointment",        "amount": 1000.00, "date": "2025-04-11" },
+  { "spending_id": 17, "category": "Education",     "description": "Textbook purchase",         "amount": 450.00,  "date": "2025-04-15" },
+  { "spending_id": 18, "category": "Miscellaneous", "description": "Charity donation",          "amount": 250.00,  "date": "2025-04-19" },
+  { "spending_id": 19, "category": "Shopping",      "description": "Clothing purchase",         "amount": 1200.00, "date": "2025-04-23" },
+  { "spending_id": 20, "category": "Entertainment", "description": "Concert ticket",            "amount": 800.00,  "date": "2025-04-27" },
+
+  { "spending_id": 21, "category": "Travel",        "description": "Hotel booking",             "amount": 1500.00, "date": "2025-05-02" },
+  { "spending_id": 22, "category": "Groceries",     "description": "Supermarket restock",       "amount": 1105.00, "date": "2025-05-06" },
+  { "spending_id": 23, "category": "Dining Out",    "description": "Breakfast café",            "amount": 180.00,  "date": "2025-05-10" },
+  { "spending_id": 24, "category": "Transportation","description": "Ride-hailing",              "amount": 227.50,  "date": "2025-05-14" },
+  { "spending_id": 25, "category": "Utilities",     "description": "Internet bill",             "amount": 500.00,  "date": "2025-05-18" },
+  { "spending_id": 26, "category": "Health",        "description": "Pharmacy co-pay",           "amount": 300.00,  "date": "2025-05-22" },
+  { "spending_id": 27, "category": "Education",     "description": "Webinar fee",               "amount": 650.00,  "date": "2025-05-26" },
+
+  { "spending_id": 28, "category": "Miscellaneous", "description": "Stationery",                "amount": 150.00,  "date": "2025-06-03" },
+  { "spending_id": 29, "category": "Shopping",      "description": "Electronics accessory",     "amount": 450.00,  "date": "2025-06-07" },
+  { "spending_id": 30, "category": "Entertainment", "description": "Theater show",              "amount": 550.00,  "date": "2025-06-11" },
+  { "spending_id": 31, "category": "Travel",        "description": "Flight booking",            "amount": 2000.00, "date": "2025-06-15" },
+  { "spending_id": 32, "category": "Groceries",     "description": "Farmers market",            "amount": 700.00,  "date": "2025-06-19" },
+  { "spending_id": 33, "category": "Dining Out",    "description": "Coffee and snacks",         "amount": 120.00,  "date": "2025-06-23" },
+  { "spending_id": 34, "category": "Transportation","description": "Metro card recharge",       "amount": 250.00,  "date": "2025-06-27" },
+
+  { "spending_id": 35, "category": "Utilities",     "description": "Gas bill",                  "amount": 550.00,  "date": "2025-07-01" },
+  { "spending_id": 36, "category": "Health",        "description": "Dental checkup",            "amount": 1200.00, "date": "2025-07-05" },
+  { "spending_id": 37, "category": "Education",     "description": "Exam materials",            "amount": 350.00,  "date": "2025-07-09" },
+  { "spending_id": 38, "category": "Miscellaneous", "description": "Birthday gift",            "amount": 600.00,  "date": "2025-07-13" },
+  { "spending_id": 39, "category": "Shopping",      "description": "Summer sale haul",          "amount": 1800.00, "date": "2025-07-17" },
+  { "spending_id": 40, "category": "Entertainment", "description": "Amusement park",            "amount": 900.00,  "date": "2025-07-21" }
+]
