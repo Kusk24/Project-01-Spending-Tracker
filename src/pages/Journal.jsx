@@ -35,7 +35,7 @@ function Journal() {
         setSpendingData((prev) =>
             [...prev,
             {
-                spending_id: spendingData.length,
+                spending_id: spendingData.length + 1,
                 category: category.current.value,
                 description: description.current.value,
                 amount: amount.current.value,
@@ -66,7 +66,7 @@ function Journal() {
 
                 <div className="form-row">
                     <label htmlFor="description-input" className="form-label">Description:</label>
-                    <input id="description-input" type="text" ref={desRef} className="input form-input" placeholder="What did you spend on?" />
+                    <input id="description-input" type="text" ref={desRef} className="input form-input" placeholder="Write a description" />
                 </div>
 
                 <div className="form-row">
