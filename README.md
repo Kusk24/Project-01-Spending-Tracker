@@ -6,6 +6,14 @@ A simple React.js web application that helps users track their spending, visuali
 
 ---
 
+## 👥 Team Members
+
+- **Win Yu Maung**
+- **Sam Yati**
+- **Phonvan Deelertpattana**
+
+---
+
 ## 📸 Screenshots
 
 ### 📊 Dashboard Overview
@@ -58,14 +66,6 @@ All your data is stored persistently in the browser.
 - ✅ Filter dashboard by day/week/month
 - ✅ Charts for spending analysis
 - ✅ Responsive design for all devices
-
----
-
-## 👥 Team Members
-
-- **Win Yu Maung**
-- **Sam Yati**
-- **Phonvan Deelertpattana**
 
 ---
 
