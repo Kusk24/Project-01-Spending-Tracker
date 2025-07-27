@@ -24,21 +24,27 @@ export const TotalChart = ({ groupByCategory }) => {
     return {
       data: amounts,
       label: category,
-      area: true,
+    //   area: true,
     };
   });
   return (
-    <div>
-      <h4>All Time Pie Chart & Line Chart</h4>
+    <div className="chart-content">
+      <h4 className="chart-heading">All Time Pie Chart & Line Chart</h4>
       <LineChart
         xAxis={[{ data: xAxisDates, scaleType: 'point', label: 'Date' }]}
         series={series}
         height={300}
+        className="custom-line-chart"
       />
       <PieChart
-        series={[{ data: pieChartData }]}
+        series={[{ 
+          data: pieChartData,
+          highlightScope: { faded: 'global', highlighted: 'item' },
+          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' }
+        }]}
         width={300}
         height={300}
+        className="custom-pie-chart"
       />
     </div>
   );

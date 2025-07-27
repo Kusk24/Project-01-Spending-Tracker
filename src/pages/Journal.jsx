@@ -1,7 +1,8 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import DataTable from '../components/DataTable';
+import '../App.css';
 
 function Journal() {
     const [spendingData, setSpendingData] = useState([]);
@@ -43,29 +44,49 @@ function Journal() {
     }
 
     return (
-        <>
-        <h1>Journal</h1>
-            <NavLink to='/'>
-                <button>Go to Dashboard</button>
-            </NavLink>
-            <div>
-                <input type="date" ref={dateRef} />
-
-                <select ref={categoryRef}>
-                    <option value={""}>Select a category</option>
-                    {categoryData.map((cat, idx) => (
-                        <option key={idx} value={cat.category} >{cat.category}</option>
-                    ))}
-                </select>
-
-                <input type="number" ref={amountRef} />
-                
-                <input type="text" ref={desRef} />
-
-                <button onClick={() => addRecord(dateRef, categoryRef, amountRef, desRef)} >Add Record</button>
+        <div className="dashboard-container">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+                <h1 className="dashboard-title" style={{ margin: 0 }}>Journal 📒</h1>
+                <NavLink to='/'>
+                    <button className="submit-button">Go to Dashboard</button>
+                </NavLink>
             </div>
-            <DataTable table={spendingData} />
-        </>
+            <form className="spending-form-stack" onSubmit={e => e.preventDefault()}>
+                <h3 className="form-title">Add New Expense</h3>
+
+                <div className="form-row">
+                    <label htmlFor="category-select" className="form-label">Category:</label>
+                    <select id="category-select" ref={categoryRef} className="input form-input">
+                        <option value={""}>Select a category</option>
+                        {categoryData.map((cat, idx) => (
+                            <option key={idx} value={cat.category}>{cat.category}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className="form-row">
+                    <label htmlFor="description-input" className="form-label">Description:</label>
+                    <input id="description-input" type="text" ref={desRef} className="input form-input" placeholder="What did you spend on?" />
+                </div>
+
+                <div className="form-row">
+                    <label htmlFor="amount-input" className="form-label">Amount:</label>
+                    <input id="amount-input" type="number" ref={amountRef} className="input form-input" placeholder="0.00" />
+                </div>
+
+                <div className="form-row">
+                    <label htmlFor="date-input" className="form-label">Date:</label>
+                    <input id="date-input" type="date" ref={dateRef} className="input form-input" />
+                </div>
+
+                <div className="form-row form-actions">
+                    <button type="button" className="submit-button" onClick={() => addRecord(dateRef, categoryRef, amountRef, desRef)}>Add Record</button>
+                </div>
+            </form>
+            <div className="journal-table-card">
+                <DataTable table={spendingData} />
+            </div>
+        </div>
     )
 }
 
