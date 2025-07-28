@@ -19,10 +19,14 @@ A simple React.js web application that helps users track their spending, visuali
 ### 📊 Dashboard Overview
 Displays analytics with filters (daily/weekly/monthly) and chart visualizations.
 
-![Dashboard](./screenshots/dashboard.jpg)
+![Dashboard](./screenshots/dashboard.png)
 
 ### 📈 Charts View
 Visualize daily, weekly or monthly spending using a **line chart** and **pie chart**.
+
+![selectMonth](./screenshots/selectMonth.png)
+
+![showBy](./screenshots/showBy.png)
 
 ![Charts](./screenshots/charts.jpg)
 
